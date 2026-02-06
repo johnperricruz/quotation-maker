@@ -1,6 +1,245 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type SVGProps } from "react";
+
+function IconSpinner(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M21 12a9 9 0 1 1-2.64-6.36" />
+    </svg>
+  );
+}
+
+function IconCheck(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
+
+function IconSave(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z" />
+      <path d="M17 21v-8H7v8" />
+      <path d="M7 3v5h8" />
+    </svg>
+  );
+}
+
+function IconClock(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  );
+}
+
+function IconUpload(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <path d="M17 8 12 3 7 8" />
+      <path d="M12 3v12" />
+    </svg>
+  );
+}
+
+function IconDownload(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <path d="M7 10l5 5 5-5" />
+      <path d="M12 15V3" />
+    </svg>
+  );
+}
+
+function IconPrinter(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M6 9V2h12v7" />
+      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+      <path d="M6 14h12v8H6z" />
+    </svg>
+  );
+}
+
+function IconPlus(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M12 5v14" />
+      <path d="M5 12h14" />
+    </svg>
+  );
+}
+
+function IconX(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M18 6 6 18" />
+      <path d="M6 6l12 12" />
+    </svg>
+  );
+}
+
+function IconArrowRight(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M5 12h14" />
+      <path d="m13 5 7 7-7 7" />
+    </svg>
+  );
+}
+
+function IconPencil(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+    </svg>
+  );
+}
+
+function IconCopy(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <rect x="9" y="9" width="13" height="13" rx="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  );
+}
+
+function IconTrash(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M3 6h18" />
+      <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+      <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+      <path d="M10 11v6" />
+      <path d="M14 11v6" />
+    </svg>
+  );
+}
 
 type LineItem = {
   id: string;
@@ -414,39 +653,61 @@ export default function Home() {
     window.print();
   };
 
+  const btnBase =
+    "inline-flex items-center justify-center gap-1.5 rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-60";
+  const btnSecondary = `${btnBase} border border-zinc-200 bg-white text-zinc-900 hover:bg-zinc-50 active:bg-zinc-100 focus-visible:ring-blue-500`;
+  const btnPrimary = `${btnBase} bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 focus-visible:ring-blue-500`;
+  const btnSuccess = `${btnBase} bg-emerald-600 text-white hover:bg-emerald-700 active:bg-emerald-800 focus-visible:ring-emerald-500`;
+  const btnDanger = `${btnBase} border border-red-200 bg-white text-red-700 hover:bg-red-50 active:bg-red-100 focus-visible:ring-red-500`;
+  const btnTextDanger =
+    "rounded text-xs text-red-600 hover:text-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white";
+
+  const btnSizeHeader = "px-2.5 py-1.5 text-xs sm:px-3 sm:py-2 sm:text-sm";
+  const btnSizeSm = "px-3 py-1.5 text-sm";
+
   return (
     <div className="min-h-dvh bg-gradient-to-b from-white to-zinc-50 text-zinc-900">
       <header className="sticky top-0 z-20 border-b border-zinc-200 bg-white/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col">
-            <h1 className="text-lg font-semibold leading-tight">
-              Quotation Maker
+            <h1 className="inline-block w-20 rounded-[5px] bg-black p-[5px] text-lg font-semibold leading-tight text-white mb-2">
+              Qtnator
             </h1>
             <p className="text-xs text-zinc-500">
-              Build a quote and print to PDF.
+              Quotation Maker - Build a quote and print to PDF.
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="-mx-4 flex w-full items-center justify-start gap-2 overflow-x-auto overscroll-x-contain px-4 pb-1 sm:mx-0 sm:w-auto sm:flex-wrap sm:justify-end sm:overflow-visible sm:px-0 sm:pb-0">
             <button
               type="button"
               onClick={handleSaveClick}
               disabled={saveState === "saving"}
-              className={`cursor-pointer rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50 ${
-                saveState === "saving" ? "opacity-60 cursor-not-allowed" : ""
-              }`}
+              className={`${
+                saveState === "saved" ? btnSuccess : btnSecondary
+              } ${btnSizeHeader} shrink-0`}
             >
-              {saveState === "saving"
-                ? "Saving…"
-                : saveState === "saved"
-                ? "Saved"
-                : "Save"}
+              {saveState === "saving" ? (
+                <IconSpinner className="h-4 w-4 animate-spin" />
+              ) : saveState === "saved" ? (
+                <IconCheck className="h-4 w-4" />
+              ) : (
+                <IconSave className="h-4 w-4" />
+              )}
+              <span>
+                {saveState === "saving"
+                  ? "Saving…"
+                  : saveState === "saved"
+                  ? "Saved"
+                  : "Save"}
+              </span>
             </button>
             <button
               type="button"
               onClick={() => setShowHistory((p) => !p)}
-              className="cursor-pointer  rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50"
+              className={`${btnSecondary} ${btnSizeHeader} shrink-0`}
             >
-              History
+              <IconClock className="h-4 w-4" />
+              <span>History</span>
             </button>
             <button
               type="button"
@@ -456,23 +717,26 @@ export default function Home() {
                   buildQuoteData()
                 )
               }
-              className="cursor-pointer rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50"
+              className={`${btnSecondary} ${btnSizeHeader} shrink-0`}
             >
-              Export JSON
+              <IconDownload className="h-4 w-4" />
+              <span>Export JSON</span>
             </button>
             <button
               type="button"
               onClick={() => importInputRef.current?.click()}
-              className="cursor-pointer rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50"
+              className={`${btnSecondary} ${btnSizeHeader} shrink-0`}
             >
-              Import JSON
+              <IconUpload className="h-4 w-4" />
+              <span>Import JSON</span>
             </button>
             <button
               type="button"
               onClick={printAndTrack}
-              className="cursor-pointer rounded-lg bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+              className={`${btnPrimary} ${btnSizeHeader} shrink-0`}
             >
-              Print / Save PDF
+              <IconPrinter className="h-4 w-4" />
+              <span>Print / Save PDF</span>
             </button>
           </div>
         </div>
@@ -534,16 +798,18 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={newQuote}
-                    className="shrink-0 whitespace-nowrap rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50"
+                    className={`shrink-0 whitespace-nowrap ${btnSecondary} ${btnSizeSm}`}
                   >
-                    New quote
+                    <IconPlus className="h-4 w-4" />
+                    <span>New quote</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => setShowHistory(false)}
-                    className="shrink-0 whitespace-nowrap rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50"
+                    className={`shrink-0 whitespace-nowrap ${btnDanger} ${btnSizeSm}`}
                   >
-                    Close
+                    <IconX className="h-4 w-4" />
+                    <span>Close</span>
                   </button>
                 </div>
               </div>
@@ -582,37 +848,42 @@ export default function Home() {
                           <button
                             type="button"
                             onClick={() => loadFromHistory(h.id)}
-                            className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50"
+                            className={`${btnSecondary} ${btnSizeSm}`}
                           >
-                            Load
+                            <IconArrowRight className="h-4 w-4" />
+                            <span>Load</span>
                           </button>
                           <button
                             type="button"
                             onClick={() => renameHistoryEntry(h.id)}
-                            className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50"
+                            className={`${btnSecondary} ${btnSizeSm}`}
                           >
-                            Rename
+                            <IconPencil className="h-4 w-4" />
+                            <span>Rename</span>
                           </button>
                           <button
                             type="button"
                             onClick={() => duplicateFromHistory(h.id)}
-                            className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50"
+                            className={`${btnSecondary} ${btnSizeSm}`}
                           >
-                            Duplicate
+                            <IconCopy className="h-4 w-4" />
+                            <span>Duplicate</span>
                           </button>
                           <button
                             type="button"
                             onClick={() => printFromHistory(h.id)}
-                            className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50"
+                            className={`${btnSecondary} ${btnSizeSm}`}
                           >
-                            Print
+                            <IconPrinter className="h-4 w-4" />
+                            <span>Print</span>
                           </button>
                           <button
                             type="button"
                             onClick={() => deleteFromHistory(h.id)}
-                            className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm text-red-600 hover:bg-zinc-50"
+                            className={`${btnDanger} ${btnSizeSm}`}
                           >
-                            Delete
+                            <IconTrash className="h-4 w-4" />
+                            <span>Delete</span>
                           </button>
                         </div>
                       </div>
@@ -663,9 +934,10 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => setLogoDataUrl(null)}
-                  className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50"
+                  className={`${btnDanger} ${btnSizeSm}`}
                 >
-                  Remove logo
+                  <IconTrash className="h-4 w-4" />
+                  <span>Remove logo</span>
                 </button>
               )}
             </div>
@@ -796,13 +1068,147 @@ export default function Home() {
               <button
                 type="button"
                 onClick={addItem}
-                className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50"
+                className={`${btnSecondary} ${btnSizeSm}`}
               >
-                Add item
+                <IconPlus className="h-4 w-4" />
+                <span>Add item</span>
               </button>
             </div>
 
-            <div className="mt-3 overflow-x-auto">
+            {/* Mobile: cards (no horizontal scrolling) */}
+            <div className="mt-3 grid gap-3 sm:hidden print:hidden">
+              {items.map((it) => {
+                const lineTotal = (it.quantity || 0) * (it.unitPrice || 0);
+                return (
+                  <div
+                    key={it.id}
+                    className="rounded-xl border border-zinc-200 bg-white p-3"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0 flex-1">
+                        <div className="flex gap-3">
+                          {it.imageDataUrl ? (
+                            <img
+                              src={it.imageDataUrl}
+                              alt=""
+                              className="h-14 w-14 shrink-0 rounded-lg border border-zinc-200 object-cover"
+                            />
+                          ) : null}
+
+                          <div className="min-w-0 flex-1">
+                            <input
+                              value={it.description}
+                              onChange={(e) =>
+                                updateItem(it.id, {
+                                  description: e.target.value,
+                                })
+                              }
+                              placeholder="Description"
+                              className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm"
+                            />
+                            <div className="mt-2 flex flex-wrap items-center gap-3">
+                              <label className="inline-flex cursor-pointer items-center text-xs text-zinc-600 hover:text-zinc-900">
+                                {it.imageDataUrl
+                                  ? "Replace photo"
+                                  : "Add photo (optional)"}
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={async (e) => {
+                                    const file = e.target.files?.[0];
+                                    if (!file) return;
+                                    const dataUrl = await readFileAsDataUrl(
+                                      file
+                                    );
+                                    updateItem(it.id, {
+                                      imageDataUrl: dataUrl,
+                                    });
+                                    e.target.value = "";
+                                  }}
+                                />
+                              </label>
+                              {it.imageDataUrl && (
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    updateItem(it.id, { imageDataUrl: null })
+                                  }
+                                  className={btnTextDanger}
+                                >
+                                  Remove photo
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="mt-3 grid grid-cols-2 gap-3">
+                          <label className="grid gap-1">
+                            <span className="text-xs font-medium text-zinc-700">
+                              Qty
+                            </span>
+                            <input
+                              type="number"
+                              min={0}
+                              value={it.quantity}
+                              onChange={(e) =>
+                                updateItem(it.id, {
+                                  quantity: Math.max(
+                                    0,
+                                    Number(e.target.value) || 0
+                                  ),
+                                })
+                              }
+                              className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm"
+                            />
+                          </label>
+                          <label className="grid gap-1">
+                            <span className="text-xs font-medium text-zinc-700">
+                              Unit price
+                            </span>
+                            <input
+                              type="number"
+                              min={0}
+                              step="0.01"
+                              value={it.unitPrice}
+                              onChange={(e) =>
+                                updateItem(it.id, {
+                                  unitPrice: Math.max(
+                                    0,
+                                    Number(e.target.value) || 0
+                                  ),
+                                })
+                              }
+                              className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm"
+                            />
+                          </label>
+                        </div>
+
+                        <div className="mt-3 flex items-center justify-between rounded-lg border border-zinc-100 bg-zinc-50 px-3 py-2 text-sm text-zinc-700">
+                          <span className="text-xs text-zinc-500">Total</span>
+                          <span className="font-medium">
+                            {formatMoney(lineTotal, currency)}
+                          </span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => removeItem(it.id)}
+                        className={`${btnDanger} px-2 py-2 text-sm leading-none`}
+                        title="Remove"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Desktop/print: table */}
+            <div className="mt-3 hidden overflow-x-auto sm:block print:block">
               <table className="w-full min-w-[540px] border-separate border-spacing-0">
                 <thead>
                   <tr className="text-left text-xs text-zinc-500">
@@ -840,7 +1246,7 @@ export default function Home() {
                                 }
                                 className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm"
                               />
-                              <div className="mt-1 flex items-center gap-3 w-[200px]">
+                              <div className="mt-1 flex w-full flex-wrap items-center gap-3 sm:w-[200px]">
                                 <label className="inline-flex cursor-pointer items-center text-xs text-zinc-600 hover:text-zinc-900">
                                   {it.imageDataUrl
                                     ? "Replace photo"
@@ -919,7 +1325,7 @@ export default function Home() {
                           <button
                             type="button"
                             onClick={() => removeItem(it.id)}
-                            className="rounded-lg border border-zinc-200 bg-white px-2 py-2 text-sm hover:bg-zinc-50"
+                            className={`${btnDanger} px-2 py-2 text-sm leading-none`}
                             title="Remove"
                           >
                             ×
@@ -1047,7 +1453,7 @@ export default function Home() {
         {/* Preview */}
         <section className="rounded-2xl border border-zinc-200 bg-white p-0 shadow-sm print:border-0 print:shadow-none">
           <article className="quotation-preview p-6 print:p-0">
-            <div className="flex items-start justify-between gap-6">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 {logoDataUrl && (
                   <img
@@ -1067,7 +1473,7 @@ export default function Home() {
                   {from.phone && <div>{from.phone}</div>}
                 </div>
               </div>
-              <div className="text-right">
+              <div className="text-left sm:text-right">
                 <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">
                   Quotation
                 </div>
@@ -1139,7 +1545,62 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-8 overflow-hidden rounded-xl border border-zinc-200">
+            {/* Mobile: cards */}
+            <div className="mt-8 grid gap-3 sm:hidden print:hidden">
+              {items.map((it) => {
+                const amount = (it.quantity || 0) * (it.unitPrice || 0);
+                return (
+                  <div
+                    key={it.id}
+                    className="rounded-xl border border-zinc-200 bg-white p-4"
+                  >
+                    <div className="flex gap-3">
+                      {it.imageDataUrl ? (
+                        <img
+                          src={it.imageDataUrl}
+                          alt=""
+                          className="h-12 w-12 shrink-0 rounded-lg border border-zinc-200 object-cover"
+                        />
+                      ) : null}
+                      <div className="min-w-0 flex-1">
+                        <div className="text-sm font-medium text-zinc-900">
+                          {it.description || "—"}
+                        </div>
+                        <div className="mt-2 grid grid-cols-3 gap-2 text-xs text-zinc-600">
+                          <div>
+                            <div className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
+                              Qty
+                            </div>
+                            <div className="mt-0.5 text-zinc-900">
+                              {it.quantity}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
+                              Unit
+                            </div>
+                            <div className="mt-0.5 text-zinc-900">
+                              {formatMoney(it.unitPrice, currency)}
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">
+                              Amount
+                            </div>
+                            <div className="mt-0.5 font-semibold text-zinc-900">
+                              {formatMoney(amount, currency)}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Desktop/print: table */}
+            <div className="mt-8 hidden overflow-hidden rounded-xl border border-zinc-200 sm:block print:block">
               <table className="w-full">
                 <thead className="bg-zinc-50 text-left text-xs text-zinc-500">
                   <tr>
@@ -1153,7 +1614,7 @@ export default function Home() {
                   {items.map((it) => (
                     <tr key={it.id} className="border-t border-zinc-200">
                       <td className="px-4 py-3">
-                        <div className="flex items-center gap-3 w-[200px]">
+                        <div className="flex min-w-0 items-center gap-3">
                           {it.imageDataUrl ? (
                             <img
                               src={it.imageDataUrl}
