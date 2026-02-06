@@ -288,6 +288,9 @@ export default function Home() {
     ]);
   };
 
+  const computeDefaultHistoryName = (data: QuoteData) =>
+    `${data.quoteNo || "Quote"} — ${data.to?.name || "Client"}`.trim();
+
   const persistHistory = (next: QuoteHistoryEntry[]) => {
     setHistory(next);
     localStorage.setItem(HISTORY_KEY, JSON.stringify(next));
@@ -296,14 +299,17 @@ export default function Home() {
   const saveToHistory = (mode: "update" | "new" = "update"): string | null => {
     const now = new Date().toISOString();
     const data = buildQuoteData();
-    const defaultName = `${data.quoteNo || "Quote"} — ${
-      data.to?.name || "Client"
-    }`;
+    const defaultName = computeDefaultHistoryName(data);
 
     if (mode === "update" && activeHistoryId) {
       const next = history.map((h) =>
         h.id === activeHistoryId
-          ? { ...h, updatedAt: now, name: h.name || defaultName, data }
+          ? (() => {
+              const prevDefault = computeDefaultHistoryName(h.data);
+              const nextName =
+                !h.name || h.name === prevDefault ? defaultName : h.name;
+              return { ...h, updatedAt: now, name: nextName, data };
+            })()
           : h
       );
       persistHistory(next);
@@ -321,6 +327,25 @@ export default function Home() {
     setActiveHistoryId(entry.id);
     persistHistory(next);
     return entry.id;
+  };
+
+  const renameHistoryEntry = (id: string) => {
+    const entry = history.find((h) => h.id === id);
+    if (!entry) return;
+
+    const suggested = entry.name || computeDefaultHistoryName(entry.data);
+    const next = window.prompt("Rename quote", suggested);
+    if (next == null) return;
+
+    const trimmed = next.trim();
+    const finalName = trimmed || computeDefaultHistoryName(entry.data);
+    const now = new Date().toISOString();
+
+    persistHistory(
+      history.map((h) =>
+        h.id === id ? { ...h, name: finalName, updatedAt: now } : h
+      )
+    );
   };
 
   const handleSaveClick = () => {
@@ -560,6 +585,13 @@ export default function Home() {
                             className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50"
                           >
                             Load
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => renameHistoryEntry(h.id)}
+                            className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50"
+                          >
+                            Rename
                           </button>
                           <button
                             type="button"
