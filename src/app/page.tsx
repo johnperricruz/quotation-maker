@@ -665,6 +665,7 @@ export default function Home() {
 
   const btnSizeHeader = "px-2.5 py-1.5 text-xs sm:px-3 sm:py-2 sm:text-sm";
   const btnSizeSm = "px-3 py-1.5 text-sm";
+  const btnSizeXs = "px-2 py-1 text-xs";
 
   return (
     <div className="min-h-dvh bg-gradient-to-b from-white to-zinc-50 text-sm text-zinc-900">
@@ -799,17 +800,17 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={newQuote}
-                    className={`shrink-0 whitespace-nowrap ${btnSecondary} ${btnSizeSm}`}
+                    className={`shrink-0 whitespace-nowrap ${btnSecondary} ${btnSizeXs}`}
                   >
-                    <IconPlus className="h-4 w-4" />
+                    <IconPlus className="h-3.5 w-3.5" />
                     <span>New quote</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => setShowHistory(false)}
-                    className={`shrink-0 whitespace-nowrap ${btnDanger} ${btnSizeSm}`}
+                    className={`shrink-0 whitespace-nowrap ${btnDanger} ${btnSizeXs}`}
                   >
-                    <IconX className="h-4 w-4" />
+                    <IconX className="h-3.5 w-3.5" />
                     <span>Close</span>
                   </button>
                 </div>
@@ -845,45 +846,45 @@ export default function Home() {
                               : ""}
                           </div>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center justify-end gap-2">
                           <button
                             type="button"
                             onClick={() => loadFromHistory(h.id)}
-                            className={`${btnSecondary} ${btnSizeSm}`}
+                            className={`${btnSecondary} ${btnSizeXs}`}
                           >
-                            <IconArrowRight className="h-4 w-4" />
+                            <IconArrowRight className="h-3.5 w-3.5" />
                             <span>Load</span>
                           </button>
                           <button
                             type="button"
                             onClick={() => renameHistoryEntry(h.id)}
-                            className={`${btnSecondary} ${btnSizeSm}`}
+                            className={`${btnSecondary} ${btnSizeXs}`}
                           >
-                            <IconPencil className="h-4 w-4" />
+                            <IconPencil className="h-3.5 w-3.5" />
                             <span>Rename</span>
                           </button>
                           <button
                             type="button"
                             onClick={() => duplicateFromHistory(h.id)}
-                            className={`${btnSecondary} ${btnSizeSm}`}
+                            className={`${btnSecondary} ${btnSizeXs}`}
                           >
-                            <IconCopy className="h-4 w-4" />
+                            <IconCopy className="h-3.5 w-3.5" />
                             <span>Duplicate</span>
                           </button>
                           <button
                             type="button"
                             onClick={() => printFromHistory(h.id)}
-                            className={`${btnSecondary} ${btnSizeSm}`}
+                            className={`${btnSecondary} ${btnSizeXs}`}
                           >
-                            <IconPrinter className="h-4 w-4" />
+                            <IconPrinter className="h-3.5 w-3.5" />
                             <span>Print</span>
                           </button>
                           <button
                             type="button"
                             onClick={() => deleteFromHistory(h.id)}
-                            className={`${btnDanger} ${btnSizeSm}`}
+                            className={`${btnDanger} ${btnSizeXs}`}
                           >
-                            <IconTrash className="h-4 w-4" />
+                            <IconTrash className="h-3.5 w-3.5" />
                             <span>Delete</span>
                           </button>
                         </div>
