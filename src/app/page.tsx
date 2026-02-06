@@ -1082,6 +1082,9 @@ export default function Home() {
           </article>
         </section>
       </main>
+      <footer className="max-w-6xl text-xs text-zinc-500 py-6 text-center mx-auto">
+        Made with ❤️ &copy; 2026 JPC.
+      </footer>
     </div>
   );
 }
