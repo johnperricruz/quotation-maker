@@ -19,7 +19,7 @@ type Party = {
 
 type QuoteData = {
   version: 1;
-  currency: "USD" | "AUD" | "PHP";
+  currency: "PHP" | "USD" | "AUD";
   logoDataUrl: string | null;
   from: Party;
   to: Party;
@@ -29,6 +29,8 @@ type QuoteData = {
   notes: string;
   taxRate: number;
   discount: number;
+  shippingFee: number;
+  customerHandlesShippingFee: boolean;
   items: LineItem[];
 };
 
@@ -91,7 +93,7 @@ function downloadJson(filename: string, data: unknown) {
 }
 
 export default function Home() {
-  const [currency, setCurrency] = useState<"USD" | "AUD" | "PHP">("USD");
+  const [currency, setCurrency] = useState<"USD" | "AUD" | "PHP">("PHP");
   const [logoDataUrl, setLogoDataUrl] = useState<string | null>(null);
   const importInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -116,8 +118,11 @@ export default function Home() {
     "Thank you for the opportunity. Please let us know if you have any questions."
   );
 
-  const [taxRate, setTaxRate] = useState<number>(10);
+  const [taxRate, setTaxRate] = useState<number>(0);
   const [discount, setDiscount] = useState<number>(0);
+  const [shippingFee, setShippingFee] = useState<number>(0);
+  const [customerHandlesShippingFee, setCustomerHandlesShippingFee] =
+    useState<boolean>(false);
 
   const [items, setItems] = useState<LineItem[]>([
     {
@@ -153,9 +158,19 @@ export default function Home() {
     const taxable = Math.max(0, subtotal - safeDiscount);
     const safeTaxRate = Math.max(0, Number(taxRate) || 0) / 100;
     const tax = taxable * safeTaxRate;
-    const total = taxable + tax;
-    return { subtotal, discount: safeDiscount, taxable, tax, total };
-  }, [items, discount, taxRate]);
+    const safeShippingFee = customerHandlesShippingFee
+      ? 0
+      : Math.max(0, Math.trunc(Number(shippingFee) || 0));
+    const total = taxable + tax + safeShippingFee;
+    return {
+      subtotal,
+      discount: safeDiscount,
+      taxable,
+      tax,
+      shippingFee: safeShippingFee,
+      total,
+    };
+  }, [items, discount, taxRate, shippingFee, customerHandlesShippingFee]);
 
   const validityDays = useMemo(() => {
     // If "Valid until" is set, compute day difference; otherwise default to 30 days.
@@ -207,6 +222,8 @@ export default function Home() {
     notes,
     taxRate,
     discount,
+    shippingFee,
+    customerHandlesShippingFee,
     items,
   });
 
@@ -221,6 +238,8 @@ export default function Home() {
     setNotes(data.notes);
     setTaxRate(Number(data.taxRate) || 0);
     setDiscount(Number(data.discount) || 0);
+    setShippingFee(Math.max(0, Math.trunc(Number(data.shippingFee) || 0)));
+    setCustomerHandlesShippingFee(!!data.customerHandlesShippingFee);
     setItems(
       (data.items || []).map((it) => ({
         id: it.id || crypto.randomUUID(),
@@ -235,7 +254,7 @@ export default function Home() {
   const newQuote = () => {
     setActiveHistoryId(null);
     setLogoDataUrl(null);
-    setCurrency("USD");
+    setCurrency("PHP");
     setFrom({
       name: "Your Company Pty Ltd",
       email: "hello@company.com",
@@ -254,8 +273,10 @@ export default function Home() {
     setNotes(
       "Thank you for the opportunity. Please let us know if you have any questions."
     );
-    setTaxRate(10);
+    setTaxRate(0);
     setDiscount(0);
+    setShippingFee(0);
+    setCustomerHandlesShippingFee(false);
     setItems([
       {
         id: crypto.randomUUID(),
@@ -465,9 +486,9 @@ export default function Home() {
                 onChange={(e) => setCurrency(e.target.value as any)}
                 className="rounded-lg border border-zinc-200 bg-white px-2 py-1 text-sm"
               >
+                <option value="PHP">PHP</option>
                 <option value="USD">USD</option>
                 <option value="AUD">AUD</option>
-                <option value="PHP">PHP</option>
               </select>
             </div>
           </div>
@@ -879,50 +900,99 @@ export default function Home() {
               </table>
             </div>
 
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
-              <label className="grid gap-1">
-                <span className="text-xs font-medium text-zinc-700">
-                  Discount
-                </span>
-                <input
-                  type="number"
-                  min={0}
-                  step="0.01"
-                  value={discount}
-                  onChange={(e) =>
-                    setDiscount(Math.max(0, Number(e.target.value) || 0))
-                  }
-                  className="rounded-lg border border-zinc-200 px-3 py-2 text-sm"
-                />
-              </label>
-              <label className="grid gap-1">
-                <span className="text-xs font-medium text-zinc-700">
-                  Tax rate (%)
-                </span>
-                <input
-                  type="number"
-                  min={0}
-                  step="0.01"
-                  value={taxRate}
-                  onChange={(e) =>
-                    setTaxRate(Math.max(0, Number(e.target.value) || 0))
-                  }
-                  className="rounded-lg border border-zinc-200 px-3 py-2 text-sm"
-                />
-              </label>
-              <div className="rounded-xl border border-zinc-200 p-3">
+            <div className="mt-4 grid gap-3">
+              <div className="grid gap-3">
+                <label className="grid gap-1">
+                  <span className="text-xs font-medium text-zinc-700">
+                    Discount
+                  </span>
+                  <input
+                    type="number"
+                    min={0}
+                    step="0.01"
+                    value={discount}
+                    onChange={(e) =>
+                      setDiscount(Math.max(0, Number(e.target.value) || 0))
+                    }
+                    className="rounded-lg border border-zinc-200 px-3 py-2 text-sm"
+                  />
+                </label>
+
+                <div className="grid gap-1">
+                  <span className="text-xs font-medium text-zinc-700">
+                    Shipping fee
+                  </span>
+                  <input
+                    type="number"
+                    min={0}
+                    step={1}
+                    inputMode="numeric"
+                    value={shippingFee}
+                    disabled={customerHandlesShippingFee}
+                    onChange={(e) =>
+                      setShippingFee(
+                        Math.max(0, Math.trunc(Number(e.target.value) || 0))
+                      )
+                    }
+                    className="rounded-lg border border-zinc-200 px-3 py-2 text-sm disabled:bg-zinc-50 disabled:text-zinc-500"
+                  />
+                  <label className="mt-1 inline-flex items-start gap-2 text-xs text-zinc-700">
+                    <input
+                      type="checkbox"
+                      className="mt-0.5"
+                      checked={customerHandlesShippingFee}
+                      onChange={(e) =>
+                        setCustomerHandlesShippingFee(e.target.checked)
+                      }
+                    />
+                    <span>Customer will handle shipping fee</span>
+                  </label>
+                </div>
+
+                <label className="grid gap-1">
+                  <span className="text-xs font-medium text-zinc-700">
+                    Tax rate (%)
+                  </span>
+                  <input
+                    type="number"
+                    min={0}
+                    step="0.01"
+                    value={taxRate}
+                    onChange={(e) =>
+                      setTaxRate(Math.max(0, Number(e.target.value) || 0))
+                    }
+                    className="rounded-lg border border-zinc-200 px-3 py-2 text-sm"
+                  />
+                </label>
+              </div>
+
+              <div className="rounded-xl border border-zinc-200 p-3 w-full">
                 <div className="flex items-center justify-between text-xs text-zinc-600">
                   <span>Subtotal</span>
                   <span>{formatMoney(totals.subtotal, currency)}</span>
                 </div>
-                <div className="mt-1 flex items-center justify-between text-xs text-zinc-600">
-                  <span>Discount</span>
-                  <span>- {formatMoney(totals.discount, currency)}</span>
-                </div>
-                <div className="mt-1 flex items-center justify-between text-xs text-zinc-600">
-                  <span>Tax</span>
-                  <span>{formatMoney(totals.tax, currency)}</span>
-                </div>
+                {totals.discount > 0 && (
+                  <div className="mt-1 flex items-center justify-between text-xs text-zinc-600">
+                    <span>Discount</span>
+                    <span>- {formatMoney(totals.discount, currency)}</span>
+                  </div>
+                )}
+                {(totals.shippingFee > 0 || customerHandlesShippingFee) && (
+                  <div className="mt-1 flex items-center justify-between text-xs text-zinc-600">
+                    <span>Shipping</span>
+                    <span>
+                      {customerHandlesShippingFee
+                        ? "N/A"
+                        : formatMoney(totals.shippingFee, currency)}
+                    </span>
+                  </div>
+                )}
+                {totals.tax > 0 && (
+                  <div className="mt-1 flex items-center justify-between text-xs text-zinc-600">
+                    <span>Tax</span>
+                    <span>{formatMoney(totals.tax, currency)}</span>
+                  </div>
+                )}
                 <div className="mt-2 flex items-center justify-between text-sm font-semibold">
                   <span>Total</span>
                   <span>{formatMoney(totals.total, currency)}</span>
@@ -1008,14 +1078,28 @@ export default function Home() {
                   <span>Subtotal</span>
                   <span>{formatMoney(totals.subtotal, currency)}</span>
                 </div>
-                <div className="mt-1 flex items-center justify-between text-sm text-zinc-700">
-                  <span>Discount</span>
-                  <span>- {formatMoney(totals.discount, currency)}</span>
-                </div>
-                <div className="mt-1 flex items-center justify-between text-sm text-zinc-700">
-                  <span>Tax</span>
-                  <span>{formatMoney(totals.tax, currency)}</span>
-                </div>
+                {totals.discount > 0 && (
+                  <div className="mt-1 flex items-center justify-between text-sm text-zinc-700">
+                    <span>Discount</span>
+                    <span>- {formatMoney(totals.discount, currency)}</span>
+                  </div>
+                )}
+                {(totals.shippingFee > 0 || customerHandlesShippingFee) && (
+                  <div className="mt-1 flex items-center justify-between text-sm text-zinc-700">
+                    <span>Shipping</span>
+                    <span>
+                      {customerHandlesShippingFee
+                        ? "N/A"
+                        : formatMoney(totals.shippingFee, currency)}
+                    </span>
+                  </div>
+                )}
+                {totals.tax > 0 && (
+                  <div className="mt-1 flex items-center justify-between text-sm text-zinc-700">
+                    <span>Tax</span>
+                    <span>{formatMoney(totals.tax, currency)}</span>
+                  </div>
+                )}
                 <div className="mt-3 flex items-center justify-between text-base font-semibold">
                   <span>Total</span>
                   <span>{formatMoney(totals.total, currency)}</span>
@@ -1082,7 +1166,7 @@ export default function Home() {
           </article>
         </section>
       </main>
-      <footer className="max-w-6xl text-xs text-zinc-500 py-6 text-center mx-auto">
+      <footer className="max-w-6xl text-xs text-zinc-500 py-6 text-center mx-auto print:hidden">
         Made with ❤️ &copy; 2026 JPC.
       </footer>
     </div>
