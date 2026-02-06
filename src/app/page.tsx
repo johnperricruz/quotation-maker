@@ -808,7 +808,7 @@ export default function Home() {
                                 }
                                 className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm"
                               />
-                              <div className="mt-1 flex items-center gap-3">
+                              <div className="mt-1 flex items-center gap-3 w-[200px]">
                                 <label className="inline-flex cursor-pointer items-center text-xs text-zinc-600 hover:text-zinc-900">
                                   {it.imageDataUrl
                                     ? "Replace photo"
@@ -1121,7 +1121,7 @@ export default function Home() {
                   {items.map((it) => (
                     <tr key={it.id} className="border-t border-zinc-200">
                       <td className="px-4 py-3">
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 w-[200px]">
                           {it.imageDataUrl ? (
                             <img
                               src={it.imageDataUrl}
