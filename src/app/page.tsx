@@ -666,11 +666,11 @@ export default function Home() {
   const btnSizeSm = "px-3 py-1.5 text-sm";
 
   return (
-    <div className="min-h-dvh bg-gradient-to-b from-white to-zinc-50 text-zinc-900">
+    <div className="min-h-dvh bg-gradient-to-b from-white to-zinc-50 text-sm text-zinc-900">
       <header className="sticky top-0 z-20 border-b border-zinc-200 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col">
-            <h1 className="inline-block w-20 rounded-[5px] bg-black p-[5px] text-lg font-semibold leading-tight text-white mb-2">
+            <h1 className="mb-2 inline-block w-20 rounded-[5px] bg-black p-[5px] text-base font-semibold leading-tight text-white">
               Qtnator
             </h1>
             <p className="text-xs text-zinc-500">
@@ -1096,7 +1096,7 @@ export default function Home() {
                           ) : null}
 
                           <div className="min-w-0 flex-1">
-                            <input
+                            <textarea
                               value={it.description}
                               onChange={(e) =>
                                 updateItem(it.id, {
@@ -1104,7 +1104,8 @@ export default function Home() {
                                 })
                               }
                               placeholder="Description"
-                              className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm"
+                              rows={1}
+                              className="h-10 w-full  overflow-y-auto rounded-lg border border-zinc-200 px-3 py-2 text-sm leading-6"
                             />
                             <div className="mt-2 flex flex-wrap items-center gap-3">
                               <label className="inline-flex cursor-pointer items-center text-xs text-zinc-600 hover:text-zinc-900">
@@ -1237,14 +1238,15 @@ export default function Home() {
                             ) : null}
 
                             <div className="min-w-0 flex-1">
-                              <input
+                              <textarea
                                 value={it.description}
                                 onChange={(e) =>
                                   updateItem(it.id, {
                                     description: e.target.value,
                                   })
                                 }
-                                className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm"
+                                rows={1}
+                                className="h-10 w-full  overflow-y-auto rounded-lg border border-zinc-200 px-3 py-2 text-sm leading-6"
                               />
                               <div className="mt-1 flex w-full flex-wrap items-center gap-3 sm:w-[200px]">
                                 <label className="inline-flex cursor-pointer items-center text-xs text-zinc-600 hover:text-zinc-900">
@@ -1462,7 +1464,7 @@ export default function Home() {
                     className="mb-3 h-12 w-auto max-w-[220px] object-contain"
                   />
                 )}
-                <h2 className="text-xl font-semibold">
+                <h2 className="text-lg font-semibold">
                   {from.name || "Quotation"}
                 </h2>
                 <div className="mt-2 whitespace-pre-line text-sm text-zinc-600">
@@ -1538,7 +1540,7 @@ export default function Home() {
                     <span>{formatMoney(totals.tax, currency)}</span>
                   </div>
                 )}
-                <div className="mt-3 flex items-center justify-between text-base font-semibold">
+                <div className="mt-3 flex items-center justify-between text-sm font-semibold">
                   <span>Total</span>
                   <span>{formatMoney(totals.total, currency)}</span>
                 </div>
@@ -1563,7 +1565,7 @@ export default function Home() {
                         />
                       ) : null}
                       <div className="min-w-0 flex-1">
-                        <div className="text-sm font-medium text-zinc-900">
+                        <div className="whitespace-pre-wrap break-words text-sm font-medium text-zinc-900">
                           {it.description || "—"}
                         </div>
                         <div className="mt-2 grid grid-cols-3 gap-2 text-xs text-zinc-600">
@@ -1613,7 +1615,7 @@ export default function Home() {
                 <tbody className="text-sm">
                   {items.map((it) => (
                     <tr key={it.id} className="border-t border-zinc-200">
-                      <td className="px-4 py-3">
+                      <td className="px-4 py-3 w-full">
                         <div className="flex min-w-0 items-center gap-3">
                           {it.imageDataUrl ? (
                             <img
@@ -1622,7 +1624,7 @@ export default function Home() {
                               className="h-10 w-10 shrink-0 rounded-lg border border-zinc-200 object-cover"
                             />
                           ) : null}
-                          <div className="min-w-0 text-xs">
+                          <div className="min-w-0 whitespace-pre-wrap break-words text-xs">
                             {it.description || "—"}
                           </div>
                         </div>
