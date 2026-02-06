@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, type SVGProps } from "react";
+import { Analytics } from "@vercel/analytics/next";
 
 function IconSpinner(props: SVGProps<SVGSVGElement>) {
   return (
@@ -1668,6 +1669,7 @@ export default function Home() {
       <footer className="max-w-6xl text-xs text-zinc-500 py-6 text-center mx-auto print:hidden">
         Made with ❤️ &copy; 2026 JPC.
       </footer>
+      <Analytics />
     </div>
   );
 }
