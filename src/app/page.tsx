@@ -1129,14 +1129,18 @@ export default function Home() {
                               className="h-10 w-10 shrink-0 rounded-lg border border-zinc-200 object-cover"
                             />
                           ) : null}
-                          <div className="min-w-0">{it.description || "—"}</div>
+                          <div className="min-w-0 text-xs">
+                            {it.description || "—"}
+                          </div>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-right">{it.quantity}</td>
-                      <td className="px-4 py-3 text-right">
+                      <td className="px-4 py-3 text-xs text-right">
+                        {it.quantity}
+                      </td>
+                      <td className="px-4 py-3 text-xs text-right">
                         {formatMoney(it.unitPrice, currency)}
                       </td>
-                      <td className="px-4 py-3 text-right">
+                      <td className="px-4 py-3 text-xs text-right">
                         {formatMoney(it.quantity * it.unitPrice, currency)}
                       </td>
                     </tr>
@@ -1150,7 +1154,7 @@ export default function Home() {
                 <div className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
                   Notes
                 </div>
-                <div className="mt-2 whitespace-pre-line text-sm text-zinc-700">
+                <div className="mt-2 whitespace-pre-line text-xs text-zinc-700">
                   {notes}
                 </div>
               </div>
