@@ -406,7 +406,7 @@ export default function Home() {
               type="button"
               onClick={handleSaveClick}
               disabled={saveState === "saving"}
-              className={`rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50 ${
+              className={`cursor-pointer rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50 ${
                 saveState === "saving" ? "opacity-60 cursor-not-allowed" : ""
               }`}
             >
@@ -419,7 +419,7 @@ export default function Home() {
             <button
               type="button"
               onClick={() => setShowHistory((p) => !p)}
-              className="rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50"
+              className="cursor-pointer  rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50"
             >
               History
             </button>
@@ -431,21 +431,21 @@ export default function Home() {
                   buildQuoteData()
                 )
               }
-              className="rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50"
+              className="cursor-pointer rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50"
             >
               Export JSON
             </button>
             <button
               type="button"
               onClick={() => importInputRef.current?.click()}
-              className="rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50"
+              className="cursor-pointer rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium hover:bg-zinc-50"
             >
               Import JSON
             </button>
             <button
               type="button"
               onClick={printAndTrack}
-              className="rounded-lg bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+              className="cursor-pointer rounded-lg bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-800"
             >
               Print / Save PDF
             </button>
